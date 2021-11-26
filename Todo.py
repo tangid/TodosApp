@@ -2,10 +2,14 @@
 
 
 
+from os import stat
+
+
 class Todo():
-    def __init__(self, title, description = None) -> None:
+    def __init__(self, title, state=0,  description = "") -> None:
         self.title = title
-        self.state = 0
+        #State 0 = Todo, 1 = Done
+        self.state = state
         self.description = description
 
     def print(self):
