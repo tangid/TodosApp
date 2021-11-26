@@ -37,21 +37,19 @@ def load():
 #Ajoute un todo dans la liste
 def add():
     #Recuperer le titre
-    
-    function.todoList = [Todo("title")] + function.todoList
-    liste.insert(0, "title")
+    title = var.get()
+    if (len(title) > 1):
+        function.todoList = [Todo(title)] + function.todoList
+        liste.insert(0, title)
 
 
 
 function.todoList[1].state = 1
-print(function.todoList[1].state)
-for i in function.todoList:
-    i.print()
 
 #Initialisation Fenetre
 fenetre = tkinter.Tk()
 fenetre.title("Todo App")
-fenetre.geometry("400x200")
+fenetre.geometry("500x200")
 
 # frame 1
 Frame1 = Frame(fenetre, borderwidth=2, relief=GROOVE)
@@ -67,16 +65,17 @@ for i in range (len(function.todoList)):
     liste.insert(i, function.todoList[i].title)
 liste.pack()
 
+var = StringVar()
+name = Entry(fenetre, textvariable=var )
+name.focus_set()
+name.pack(side=RIGHT)
 
+#Création des différents boutons
+Button(fenetre, text ='Save', command=save).pack(side=RIGHT)
+Button(fenetre, text ='Load', command=load).pack(side=RIGHT)
+Button(fenetre, text ='Add', command=add).pack(side=RIGHT)
 
-#Bouton mise à jour valeur state
-#Button(fenetre, text ='Edit state', command=edit).pack(side=RIGHT, padx=5, pady=5)
-Button(fenetre, text ='Save', command=save).pack(side=RIGHT, padx=5, pady=10)
-Button(fenetre, text ='Load', command=load).pack(side=RIGHT, padx=5, pady=10)
-Button(fenetre, text ='Add', command=add).pack(side=RIGHT, padx=5, pady=10)
-
-Label(Frame1).pack(padx=10, pady=10)
-#Label(Frame2).pack(padx=10, pady=10)
+Label(Frame1).pack()
 
 
 
